@@ -1,15 +1,12 @@
 import { Link } from "react-router-dom";
 
+ 
+
+const DonateCard = ({pet}) => {
 
 
-
-
-const PetCard = ({ pet }) => {
-  return (
-
-    
-
-    <div className="flex max-w-md overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+    return (
+        <div className="flex max-w-md overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
 
       <div className="w-1/3" style={{ overflow: 'hidden' }}>
         <img src={pet.image} alt={pet.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -30,13 +27,13 @@ const PetCard = ({ pet }) => {
         <div className="flex justify-between mt-3 item-center">
           <h1 className="text-lg font-bold text-gray-700 dark:text-gray-200 md:text-xl">Age: {pet.age}</h1>
 
-          <Link to={`/petList/${pet?._id}`} className='col-span-1 cursor-pointer group'>
+          <Link to={`/donateDetails/${pet?._id}`} className='col-span-1 cursor-pointer group'>
             <button className="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">View Details</button>
           </Link>
         </div>
       </div>
     </div>
-  );
+    );
 };
 
-export default PetCard;
+export default DonateCard;
