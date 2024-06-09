@@ -9,7 +9,7 @@ const PetCard = ({ pet }) => {
 
     
 
-    <div className="flex max-w-md overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+    <div className="flex max-w-xl overflow-hidden bg-white rounded-lg shadow-2xl dark:bg-gray-800">
 
       <div className="w-1/3" style={{ overflow: 'hidden' }}>
         <img src={pet.image} alt={pet.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />

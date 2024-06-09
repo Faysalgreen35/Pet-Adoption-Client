@@ -122,7 +122,7 @@ const handleThemeToggle = () => {
                   </div>
                   <ul className="py-2" aria-labelledby="user-menu-button">
                     <li>
-                      <NavLink to="/dashboard" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200">
+                      <NavLink to="dashboard/petadd" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200">
                         Dashboard
                       </NavLink>
                     </li>

@@ -1,12 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Provider/AuthProvider";
-import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom"; 
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import logo from '../../../src/assets/images/logo/logo3.jpeg'
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import useAuth from "../../hooks/useAuth";
 
 // import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
@@ -14,7 +13,7 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const SignUp = () => {
-    const { createuser, updateUserProfile } = useContext(AuthContext);
+    const { createuser, updateUserProfile } = useAuth;
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
     const {

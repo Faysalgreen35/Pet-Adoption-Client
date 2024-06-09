@@ -1,5 +1,6 @@
 
-import logo from'../../../assets/images/logo/logo3.jpeg'
+// import logo from'../../../assets/images/logo/logo3.jpeg'
+import logo from'../../../assets/images/logo/logo3.jpeg';
 
 const Footer = () => {
     return (

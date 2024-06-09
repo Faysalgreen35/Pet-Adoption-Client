@@ -11,6 +11,13 @@ import PetList from "../Pages/PetList/PetList";
 import PetDetails from "../Pages/PetDetails/PetDetails";
 import DonateeCampaigns from "../Pages/DonateeCampaigns/DonateeCampaigns";
 import DonateDetails from "../Pages/DonateDetails/DonateDetails";
+// import PrivateRoutes from "../Provider/PrivateRoutes";
+import Dashboard from "../Layout/Dashboard";
+import PrivateRoutes from "../Provider/PrivateRoutes";
+import AddPetForm from "../components/Form/AddPetForm";
+import MyAddedPets from "../Pages/Dashobard/MyAddedPets/MyAddedPets";
+import UpdatePetAddedPage from "../Pages/Dashobard/UpdatePetAddedPage/UpdatePetAddedPage";
+// import AddPetForm from "../components/Form/AddPetForm";
 
  export const router = createBrowserRouter([
     {
@@ -47,6 +54,29 @@ import DonateDetails from "../Pages/DonateDetails/DonateDetails";
           path:'donateDetails/:id',
           element:<DonateDetails></DonateDetails>
         },
+
+      ]
+    },
+
+    {
+      path:'dashboard',
+      element:<PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
+      children:[
+
+        //user dashboard
+        {
+          path:'petadd',
+          element:<PrivateRoutes><AddPetForm></AddPetForm></PrivateRoutes>,
+        },
+        {
+          path:'my-added-pets',
+          element:<PrivateRoutes><MyAddedPets></MyAddedPets></PrivateRoutes>,
+        },
+        {
+          path: 'updatePetList/:id',
+          element: <PrivateRoutes><UpdatePetAddedPage /></PrivateRoutes>,
+          loader: ({ params }) => fetch(`http://localhost:5000/petList/${params.id}`)
+      },
 
       ]
     },

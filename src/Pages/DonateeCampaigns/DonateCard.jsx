@@ -6,9 +6,9 @@ const DonateCard = ({pet}) => {
 
 
     return (
-        <div className="flex max-w-md overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <div className="flex max-w-md overflow-hidden lg:w-full bg-white rounded-lg shadow-2xl  dark:bg-gray-800">
 
-      <div className="w-1/3" style={{ overflow: 'hidden' }}>
+      <div className="lg:w-1/3" style={{ overflow: 'hidden' }}>
         <img src={pet.image} alt={pet.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
       </div>
 
@@ -18,14 +18,14 @@ const DonateCard = ({pet}) => {
 
 
         <p className="mt-2 text-sm text-gray-600 dark:text-gray-400"> Category: {pet.category}</p>
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400"> {pet.location}</p>
-
-        <div className="flex mt-2 item-center">
-
+        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400"> {pet.location}</p> 
+        <div className=" mt-2 item-center">
+        <h1 className="text-lg font-bold text-gray-700 dark:text-gray-200 md:text-sm">Maximum donation amount: {pet.maximumDonationAmount}</h1>
+        <h1 className="text-lg font-bold text-gray-700 dark:text-gray-200 md:text-sm">Donate amount: {pet.donatedAmount}</h1>
         </div>
 
         <div className="flex justify-between mt-3 item-center">
-          <h1 className="text-lg font-bold text-gray-700 dark:text-gray-200 md:text-xl">Age: {pet.age}</h1>
+          
 
           <Link to={`/donateDetails/${pet?._id}`} className='col-span-1 cursor-pointer group'>
             <button className="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">View Details</button>
