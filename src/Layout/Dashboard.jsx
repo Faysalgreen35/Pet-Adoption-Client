@@ -224,7 +224,7 @@ const Dashboard = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="#"
+                                            to="/dashboard/my-donations"
                                     className={({ isActive }) =>
                                         `flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${
                                             isActive

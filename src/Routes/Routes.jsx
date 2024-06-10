@@ -122,7 +122,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'my-donations',
-        element: <AdminRoute><MyDonations></MyDonations></AdminRoute>
+        element: <><MyDonations></MyDonations></>
       },
 
 
