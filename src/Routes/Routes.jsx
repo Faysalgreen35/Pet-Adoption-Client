@@ -17,6 +17,12 @@ import PrivateRoutes from "../Provider/PrivateRoutes";
 import AddPetForm from "../components/Form/AddPetForm";
 import MyAddedPets from "../Pages/Dashobard/MyAddedPets/MyAddedPets";
 import UpdatePetAddedPage from "../Pages/Dashobard/UpdatePetAddedPage/UpdatePetAddedPage";
+import CreateDonation from "../Pages/Dashobard/CreateDonation/CreateDonation";
+import MyDonationCampaigns from "../Pages/Dashobard/MyDonationCampaigns/MyDonationCampaigns";
+import UpdateDonate from "../Pages/Dashobard/UpdateDonate/UpdateDonate";
+import AdoptRequest from "../Pages/Dashobard/AdoptRequest/AdoptRequest";
+import AdminRoute from "./AdminRoute";
+import AllUsers from "../Pages/Dashobard/AllUsers/AllUsers";
 // import AddPetForm from "../components/Form/AddPetForm";
 
  export const router = createBrowserRouter([
@@ -76,7 +82,38 @@ import UpdatePetAddedPage from "../Pages/Dashobard/UpdatePetAddedPage/UpdatePetA
           path: 'updatePetList/:id',
           element: <PrivateRoutes><UpdatePetAddedPage /></PrivateRoutes>,
           loader: ({ params }) => fetch(`http://localhost:5000/petList/${params.id}`)
+          // loader: ({ params }) => fetch(`https://pet-adoption-server-delta.vercel.app/${params.id}`)
       },
+      {
+        path:'create-donation',
+        element:<PrivateRoutes><CreateDonation></CreateDonation></PrivateRoutes>,
+      },
+      {
+        path:'my-donate-campaign',
+        element:<PrivateRoutes><MyDonationCampaigns/></PrivateRoutes>,
+      },
+      {
+        path: 'updateDonate/:id',
+        element: <PrivateRoutes><UpdateDonate /></PrivateRoutes>,
+        loader: ({ params }) => fetch(`http://localhost:5000/donate/${params.id}`)
+        // loader: ({ params }) => fetch(`https://pet-adoption-server-delta.vercel.app/donate/${params.id}`)
+    },
+    {
+      path:'adopt-request',
+      element:<PrivateRoutes><AdoptRequest/></PrivateRoutes>,
+    },
+
+// admin routes
+
+{
+  path:'users',
+  element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
+}
+
+
+
+
+
 
       ]
     },

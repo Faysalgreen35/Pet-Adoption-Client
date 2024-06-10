@@ -17,7 +17,8 @@ const SocialLogin = () => {
                 const userInfo = {
                     email: result.user?.email,
                     name: result.user?.displayName,
-                    role: 'user'
+                    role: 'user',
+                    photoURL:result.user?.photoURL,
                 }
 
                 axiosPublic.post('/users', userInfo)
@@ -38,7 +39,8 @@ const SocialLogin = () => {
                 const userInfo = {
                     email: result.user?.email,
                     name: result.user?.displayName,
-                    role: 'user'
+                    role: 'user',
+                    photoURL:result.user?.photoURL,
                 }
                 axiosPublic.post('/users', userInfo)
                 .then(res => {

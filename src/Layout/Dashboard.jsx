@@ -1,8 +1,15 @@
 import logo from'../../src/assets/images/logo/logo3.jpeg';
  
 import { Link, NavLink, Outlet } from 'react-router-dom'; 
+// import useAdmin from '../hooks/useAdmin';
+// import useAuth from '../hooks/useAuth';
+import useAdmin from '../hooks/useAdmin';
 
 const Dashboard = () => {
+
+    const [isAdmin] = useAdmin();
+    // const {user}= useAuth();
+
     return (
        <div className='flex'>
          <div className="flex">
@@ -15,7 +22,8 @@ const Dashboard = () => {
                 <div className="flex flex-col justify-between flex-1 mt-6">
                     <nav className="-mx-3 space-y-6">
                         <ul className="space-y-3">
-                            <li>
+                            { isAdmin ? <>
+                                <li>
                                 <NavLink
                                     to="/dashboard/petadd"
                                     className={({ isActive }) =>
@@ -45,7 +53,7 @@ const Dashboard = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="#"
+                                    to="/dashboard/adopt-request"
                                     className={({ isActive }) =>
                                         `flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${
                                             isActive
@@ -59,7 +67,7 @@ const Dashboard = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="#"
+                                    to="/dashboard/create-donation"
                                     className={({ isActive }) =>
                                         `flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${
                                             isActive
@@ -73,7 +81,7 @@ const Dashboard = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="#"
+                                    to="/dashboard/my-donate-campaign"
                                     className={({ isActive }) =>
                                         `flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${
                                             isActive
@@ -99,6 +107,111 @@ const Dashboard = () => {
                                     <span className="mx-2 text-sm font-medium">My Donations</span>
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/users"
+                                    className={({ isActive }) =>
+                                        `flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${
+                                            isActive
+                                                ? "text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-200"
+                                                : "text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200"
+                                        }`
+                                    }
+                                >
+                                    <span className="mx-2 text-sm font-medium"> Users</span>
+                                </NavLink>
+                            </li>
+                            </>
+                            :
+                            <>
+                             <li>
+                                <NavLink
+                                    to="/dashboard/petadd"
+                                    className={({ isActive }) =>
+                                        `flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${
+                                            isActive
+                                                ? "text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-200"
+                                                : "text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200"
+                                        }`
+                                    }
+                                >
+                                    <span className="mx-2 text-sm font-medium">Add a pet</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/my-added-pets"
+                                    className={({ isActive }) =>
+                                        `flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${
+                                            isActive
+                                                ? "text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-200"
+                                                : "text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200"
+                                        }`
+                                    }
+                                >
+                                    <span className="mx-2 text-sm font-medium">My added pets</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/adopt-request"
+                                    className={({ isActive }) =>
+                                        `flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${
+                                            isActive
+                                                ? "text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-200"
+                                                : "text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200"
+                                        }`
+                                    }
+                                >
+                                    <span className="mx-2 text-sm font-medium">Adoption Request</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/create-donation"
+                                    className={({ isActive }) =>
+                                        `flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${
+                                            isActive
+                                                ? "text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-200"
+                                                : "text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200"
+                                        }`
+                                    }
+                                >
+                                    <span className="mx-2 text-sm font-medium">Create Donation Campaign</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/my-donate-campaign"
+                                    className={({ isActive }) =>
+                                        `flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${
+                                            isActive
+                                                ? "text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-200"
+                                                : "text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200"
+                                        }`
+                                    }
+                                >
+                                    <span className="mx-2 text-sm font-medium">My Donation Campaigns</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="#"
+                                    className={({ isActive }) =>
+                                        `flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${
+                                            isActive
+                                                ? "text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-200"
+                                                : "text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200"
+                                        }`
+                                    }
+                                >
+                                    <span className="mx-2 text-sm font-medium">My Donations</span>
+                                </NavLink>
+                            </li>
+                            </>
+                            
+                        }
+                           
                         </ul>
 
                         <ul className="space-y-3">

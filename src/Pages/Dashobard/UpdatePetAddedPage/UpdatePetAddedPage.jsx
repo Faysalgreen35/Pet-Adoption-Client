@@ -67,7 +67,7 @@ const UpdatePetAddedPage = () => {
             // Save to database
 
             const dbRes = await axiosPublic.patch(`/petList/${_id}`, petData);
-            console.log(dbRes.data);
+            // console.log(dbRes.data);
             if (dbRes.data.modifiedCount > 0) {
                 reset();
                 Swal.fire({
