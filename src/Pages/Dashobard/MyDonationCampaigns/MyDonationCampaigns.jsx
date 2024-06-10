@@ -7,16 +7,20 @@ import useAuth from '../../../hooks/useAuth';
 import { useTable } from 'react-table';
 import { FaEdit,  } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+// import { FcAcceptDatabase } from 'react-icons/fc';
+import { BsFillMicMuteFill } from 'react-icons/bs';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 // import useAxiosSecure from './../../../hooks/useAxiosSecure';
 // import Swal from 'sweetalert2';
 
 // import ProgressBar from './ProgressBar';
 
-const ProgressBar = ({ currentDonation, donateAmount }) => {
-    const progress = (currentDonation / donateAmount) * 100;
+const ProgressBar = ({ currentDonation, maximumDonationAmount }) => {
+    const progress = (currentDonation / maximumDonationAmount) * 100;
 
     return (
-        // <div className="w-full bg-gray-200 rounded-full h-4">
+        // <div className="w-full bg-gray-200 rounded-full h-4">maximumDonationAmount
         //     <div
         //         className="bg-green-500 h-4 rounded-full"
         //         style={{ width: `${progress}%` }}
@@ -38,7 +42,7 @@ const MyDonationCampaigns = () => {
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic(); 
     const [sortBy, setSortBy] = useState({ field: 'serialNumber', direction: 'asc' });
-    // const axiosSecure = useAxiosSecure();
+    const axiosSecure = useAxiosSecure();
 
 
    
@@ -56,11 +60,57 @@ const MyDonationCampaigns = () => {
         return data;
     };
 
-    const { data: donate = [], isLoading, isError, error } = useQuery({
+    const { data: donate = [], isLoading, refetch, isError, error } = useQuery({
         queryKey: ['donate', user?.email, sortBy],
         queryFn: fetchPets,
         keepPreviousData: true,
     });
+
+    const handlePause = async (id) => {
+       
+        Swal.fire({
+            title: "Are you sure, You want to Pause Donate?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Pause it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // const res = await axiosSecure.put(`/petList/${id}`, { adopted: true });
+                axiosSecure.put(`/donate/${id}`, { adopted: true })
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Paused Campaign!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+    };
+
+    // const handlePause = async (id) => {
+    //     try {
+    //         const res = await axiosSecure.put(`/donate/${id}`, { adopted: true });
+    //         if (res.data.modifiedCount > 0) {
+    //             refetch();
+    //             Swal.fire({
+    //                 position: "top-end",
+    //                 icon: "success",
+    //                 title: `${id} has been adopted`,
+    //                 showConfirmButton: false,
+    //                 timer: 1500
+    //             });
+    //         }
+    //     } catch (error) {
+    //         console.error('Error adopting pet:', error);
+    //     }
+    // };
 
     const columns = useMemo(
         () => [
@@ -68,17 +118,17 @@ const MyDonationCampaigns = () => {
             { Header: 'Pet Name', accessor: 'name' },
            
             {
-                Header: 'Maximum donation amount',
-                accessor: 'donateAmount'
+                Header: 'Maximum  Amount',
+                accessor: 'maximumDonationAmount'
                 // Cell: ({ value }) => value ? 'Adopted' : 'Not Adopted'
             },
             {
                 Header: 'Donation Progress',
                 accessor: 'progress',
                 Cell: ({ row }) => {
-                    const { donateAmount } = row.original;
-                    const currentDonation = row.original.currentDonation || 10; // Default to 0 if not present
-                    return <ProgressBar currentDonation={currentDonation} donateAmount={donateAmount} />;
+                    const { maximumDonationAmount } = row.original;
+                    const currentDonation = row.original.currentDonation || 100; // Default to 0 if not present
+                    return <ProgressBar currentDonation={currentDonation} maximumDonationAmount={maximumDonationAmount} />;
                
                 }
             },
@@ -86,30 +136,21 @@ const MyDonationCampaigns = () => {
                 Header: 'Actions',
                 accessor: '_id',
                 Cell: ({ value }) => (
-                    <div className='px-6 gap-6 '>
-                        <Link to={`/dashboard/updateDonate/${value}`}>
-                            <button className="btn pl-5 ml-0 border border-red-400 p-3 rounded-full">
+                    <div className='px-6 gap-6 flex'>
+                       <Link to={`/dashboard/updateDonate/${value}`}>
+                            <button className="btn pl-5 ml-0 border-4 border-red-400 p-3">
                                 <FaEdit className='text-2xl' />
                             </button>
                         </Link>
-                      
-                    </div>
-                ),
-            },
-            {
-                Header: 'Donation Status',
-                accessor: 'ids',
-                Cell: () => (
-                    <div className='px-6 gap-6 '>
-                      
-                            <button className="btn pl-5 ml-0 border border-red-400 p-3 bg-green-400 rounded-full">
-                                Pause Button
-                            </button>
                        
-                      
+                        <button onClick={() => handlePause(value)} className="btn pl-5 ml-0 border-4 border-red-400 p-3">
+                            <BsFillMicMuteFill className='text-2xl' />
+                        </button>
                     </div>
                 ),
             },
+            
+            
             {
                 Header: 'Donars',
                 accessor: 'id',
@@ -124,6 +165,7 @@ const MyDonationCampaigns = () => {
                     </div>
                 ),
             },
+        
         ],
         []
     );

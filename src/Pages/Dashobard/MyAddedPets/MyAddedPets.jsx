@@ -115,8 +115,7 @@ const MyAddedPets = () => {
             console.error('Error deleting pet:', error);
         }
     };
-
-    const handleAdopt = async (id) => {
+  const handleAdopt = async (id) => {
         try {
             const res = await axiosSecure.put(`/petList/${id}`, { adopted: true });
             if (res.data.modifiedCount > 0) {
@@ -133,6 +132,7 @@ const MyAddedPets = () => {
             console.error('Error adopting pet:', error);
         }
     };
+  
 
     const handleSort = (field) => {
         setSortBy((prevSortBy) => ({
@@ -157,7 +157,7 @@ const MyAddedPets = () => {
 
     return (
         <Box className="p-4 lg:px-10">
-            <Text as="h2" fontSize="2xl" mb="4">My Added Pets</Text>
+            <Text as="h2" className='text-5xl text-slate-100 text-center font-bold bg-black  uppercase ' fontSize="2xl" mb="4">My Added Pets</Text>
             {isLoading && <div>Loading...</div>}
             {isError && <div>Error fetching data: {error.message}</div>}
             <Table variant="simple" {...getTableProps()} className="mb-4">

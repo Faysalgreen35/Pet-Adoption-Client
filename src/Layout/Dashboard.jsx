@@ -95,7 +95,7 @@ const Dashboard = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="#"
+                                    to="/dashboard/my-donations"
                                     className={({ isActive }) =>
                                         `flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${
                                             isActive
@@ -118,7 +118,35 @@ const Dashboard = () => {
                                         }`
                                     }
                                 >
-                                    <span className="mx-2 text-sm font-medium"> Users</span>
+                                    <span className="mx-2 text-sm font-medium uppercase"> Users</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/all-pets"
+                                    className={({ isActive }) =>
+                                        `flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${
+                                            isActive
+                                                ? "text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-200"
+                                                : "text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200"
+                                        }`
+                                    }
+                                >
+                                    <span className="mx-2 text-sm font-medium uppercase"> All Pets</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/all-donations"
+                                    className={({ isActive }) =>
+                                        `flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg ${
+                                            isActive
+                                                ? "text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-200"
+                                                : "text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200"
+                                        }`
+                                    }
+                                >
+                                    <span className="mx-2 text-sm font-medium uppercase"> All Donations</span>
                                 </NavLink>
                             </li>
                             </>

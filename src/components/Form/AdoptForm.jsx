@@ -32,7 +32,7 @@ const AdoptForm = ({ petList, user, onClose, onSubmit }) => {
         </div>
         <div className="mb-4">
           <label className="block text-gray-700">Phone Number</label>
-          <input type="tel" name="phoneNumber" placeholder="Phone Number" required className="w-full mt-2 p-2 border rounded" />
+          <input type="text" name="phoneNumber" placeholder="Phone Number" required className="w-full mt-2 p-2 border rounded" />
         </div>
         <div className="mb-4">
           <label className="block text-gray-700">Address</label>

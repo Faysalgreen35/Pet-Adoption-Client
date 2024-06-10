@@ -41,7 +41,7 @@ const CreateDonation = () => {
             // Prepare data for database
             const donateData = {
                 name: data.name,
-                donateAmount: data.donateAmount,
+                maximumDonationAmount: data.donateAmount,
                 lastDate: data.lastDate,
                 shortDescription: data.shortDescription,
                 longDescription: editor.getHTML(),
@@ -59,7 +59,7 @@ const CreateDonation = () => {
             });
 
             if (dbRes.data.insertedId) {
-                console.log('Pet added to the database');
+                console.log('Pet added to the database',dbRes.data.insertedId);
                 reset();
                 Swal.fire({
                     position: 'top-end',

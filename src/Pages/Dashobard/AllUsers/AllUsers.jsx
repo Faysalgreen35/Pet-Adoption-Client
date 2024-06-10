@@ -43,6 +43,8 @@ const AllUsers = () => {
             }
         });
     }
+
+    
    const handleMakeAdmin = user =>{
     axiosSecure.patch(`/users/admin/${user._id}`)
         .then(res =>{
@@ -158,7 +160,7 @@ const AllUsers = () => {
 
     return (
         <Box className="p-4 lg:px-10">
-            <Text className='text-5xl text-slate-100 text-center font-bold bg-black  ' as="h1" fontSize="5xl" mb="4">My Donation Campagign</Text>
+            <Text className='text-5xl text-slate-100 text-center font-bold bg-black uppercase  ' as="h1" fontSize="5xl" mb="4">All Users Lists</Text>
             {isLoading && <div>Loading...</div>}
             {isError && <div>Error fetching data: {error.message}</div>}
             <Table variant="simple" {...getTableProps()} className="mb-4">

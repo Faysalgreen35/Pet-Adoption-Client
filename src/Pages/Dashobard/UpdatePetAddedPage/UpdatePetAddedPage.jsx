@@ -125,7 +125,7 @@ const UpdatePetAddedPage = () => {
 
             <div className="flex flex-col">
                 <label htmlFor="age" className="font-medium text-gray-700">Pet Age</label>
-                <input type="number" defaultValue={age} name="age" {...register('age', { required: 'Age is required' })} className="mt-1 p-2 border border-gray-300 rounded" />
+                <input type="text" defaultValue={age} name="age" {...register('age', { required: 'Age is required' })} className="mt-1 p-2 border border-gray-300 rounded" />
                 {errors.age && <p className="text-red-600">{errors.age.message}</p>}
             </div>
 

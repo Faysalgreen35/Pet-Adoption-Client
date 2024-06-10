@@ -29,8 +29,8 @@ const PetList = () => {
     queryKey: ['petLists', searchQuery, category],
     queryFn: fetchPetLists,
     getNextPageParam: (lastPage, allPages) => {
-      if (lastPage.length === 3 || lastPage.length === 2 || lastPage.length === 1) { // Continue fetching if lastPage has 3 items
-        return allPages.length * 1 || allPages.length * 2 || allPages.length * 3; // Calculate the correct next offset
+      if (lastPage.length === 3  ) { // Continue fetching if lastPage has 3 items
+        return allPages.length * 3 // Calculate the correct next offset
       } else {
         return undefined; // Stop fetching when there are no more items
       }

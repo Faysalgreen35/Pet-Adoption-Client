@@ -13,7 +13,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const UpdateDonate = () => {
 
-    const { name, longDescription, donateAmount, lastDate, shortDescription, _id } = useLoaderData();
+    const { name, longDescription, maximumDonationAmount, lastDate, shortDescription, _id } = useLoaderData();
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const axiosPublic = useAxiosPublic();
@@ -44,7 +44,7 @@ const UpdateDonate = () => {
             // Prepare data for database
             const donateData = {
                 name: data.name,
-                donateAmount: data.donateAmount,
+                maximumDonationAmount: data.donateAmount,
                 lastDate: data.lastDate,
                 shortDescription: data.shortDescription,
                 longDescription: editor.getHTML(),
@@ -97,7 +97,7 @@ const UpdateDonate = () => {
                 <label htmlFor="donateAmount" className="font-medium text-gray-700">Donation Amount</label>
                 <input
                     name="donateAmount"
-                    defaultValue={donateAmount}
+                    defaultValue={maximumDonationAmount}
                     type="text"
                    
                     {...register('donateAmount', {
